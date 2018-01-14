@@ -1,0 +1,14 @@
+{
+  "name": "cryptomancy-source",
+  "version": "1.0.0",
+  "description": "different flavours of entropy with a consistent api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cryptomancy"
+  ],
+  "author": "ansuz",
+  "license": "ISC"
+}
