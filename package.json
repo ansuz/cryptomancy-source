@@ -10,5 +10,8 @@
     "cryptomancy"
   ],
   "author": "ansuz",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "tweetnacl": "^1.0.0"
+  }
 }
