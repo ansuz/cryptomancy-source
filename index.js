@@ -15,10 +15,12 @@ Source.deterministic is notable because it requires a 'seed' for initialization 
 
 var Source = module.exports;
 
+var insecure = function () {
+    return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
+};
+
 Source.insecure = function () {
-    return function () {
-        return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
-    };
+    return insecure;
 };
 
 Source.insecure._ = Source.insecure();
@@ -30,17 +32,21 @@ Source.secure = function () {
 };
 
 Source.bytes = {};
-Source.bytes.secure = nacl.randomBytes;
+Source.bytes.secure = function () {
+    return nacl.randomBytes;
+};
 
-Source.bytes.insecure = function (n) {
-    var A = new Uint8Array(n);
-    for (var i = 0; i < n; i++) { A[i] = Math.floor(Math.random() * 256); }
-    return A;
+Source.bytes.insecure = function () {
+    return function (n) {
+        var A = new Uint8Array(n);
+        for (var i = 0; i < n; i++) { A[i] = Math.floor(Math.random() * 256); }
+        return A;
+    };
 };
 
 Source.secure._ = Source.secure();
 
-var det_buffer = function (seed) {
+var det_buffer = Source.bytes.deterministic = function (seed) {
     var buffer;
     if (typeof(seed) === 'number') {
         buffer = util.slice(nacl.hash(util.buffer_from_int(seed)));
@@ -79,11 +85,10 @@ var det_buffer = function (seed) {
 };
 
 Source.deterministic = function (seed) {
-    var bytes = Source.deterministic.bytes(seed);
+    var bytes = Source.bytes.deterministic(seed);
 
     return function () {
         return util.int_from_buffer(bytes(7));
     };
 };
 
-Source.deterministic.bytes = det_buffer;
