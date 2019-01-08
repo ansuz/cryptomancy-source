@@ -50,10 +50,10 @@ var det_buffer = Source.bytes.deterministic = function (seed) {
     var buffer;
     if (typeof(seed) === 'number') {
         buffer = util.slice(nacl.hash(util.buffer_from_int(seed)));
-    } else if (Array.isArray(seed)) {
+    } else if (Array.isArray(seed) || seed instanceof(Uint8Array)) {
         buffer = util.slice(nacl.hash(new Buffer(seed)));
     } else {
-        throw new Error('expected number or array');
+        throw new Error('expected number, array, or Uint8Array');
     }
 
     var chunk = 32;
