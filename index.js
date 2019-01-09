@@ -71,7 +71,6 @@ var det_buffer = Source.bytes.deterministic = function (seed) {
             res.push(rem);
 
             var x = util.concat(res.map(function (part) {
-                console.log(part);
                 return take(part);
             }));
 
