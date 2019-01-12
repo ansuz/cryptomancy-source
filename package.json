@@ -1,10 +1,10 @@
 {
   "name": "cryptomancy-source",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "different flavours of entropy with a consistent api",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./test.js"
   },
   "keywords": [
     "cryptomancy"
@@ -12,6 +12,7 @@
   "author": "ansuz",
   "license": "ISC",
   "dependencies": {
-    "tweetnacl": "^1.0.0"
+    "tweetnacl": "^1.0.0",
+    "cryptomancy-util": "^1.0.1"
   }
 }
