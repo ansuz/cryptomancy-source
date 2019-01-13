@@ -1,6 +1,6 @@
 {
   "name": "cryptomancy-source",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "different flavours of entropy with a consistent api",
   "main": "index.js",
   "scripts": {
@@ -14,5 +14,9 @@
   "dependencies": {
     "tweetnacl": "^1.0.0",
     "cryptomancy-util": "^1.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ansuz/cryptomancy-source"
   }
 }
